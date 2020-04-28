@@ -1,6 +1,6 @@
 /*
  * ten file: vchar_driver.h
- * tac gia : nguyenhaison7@gmail.com
+ * tac gia : nhson17@apcs.vn
  * ngay tao: 27/4/2020
  * mo ta   : chua cac dinh nghia mo ta thiet bi gia lap vchar_dev.
  *           vchar_device la mot thiet bi nam tren RAM.
