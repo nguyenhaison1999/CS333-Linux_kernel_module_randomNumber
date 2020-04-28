@@ -35,6 +35,6 @@ Nguyễn Hải Sơn      - `1751100`
 
 
 ## Acknowledgments
-- Hướng dẫn project 1 - Lập trình linux kernel module Youtuber Long Viet (**Unpublished video**)
+- Hướng dẫn project 1 - Lập trình linux kernel module | Youtuber Long Viet (**Unpublished video**)
 - [Vimentor](https://vimentor.com/vi/lesson/gioi-thieu-khoa-hoc) on series of Linux Device Driver
 
