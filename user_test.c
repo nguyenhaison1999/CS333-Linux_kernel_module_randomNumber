@@ -6,8 +6,8 @@
 #include<unistd.h>
  
 #define DEVICE_NODE "/dev/vchar_dev"
-#define BUFFER_LENGTH 4   	         // The buffer length 
-static char receive[BUFFER_LENGTH];      // The receive buffer from the LKM
+#define BUFFER_LENGTH 4   	         //The buffer length
+static char receive[BUFFER_LENGTH];      //The receive buffer from the kernel 
  
 int main() {
 	int ret, fd;
@@ -19,7 +19,7 @@ int main() {
 	}
 
 	printf("Reading from the device...\n");
-	ret = read(fd, receive, BUFFER_LENGTH);         // Read the response from the module
+	ret = read(fd, receive, BUFFER_LENGTH);         //Read the response from the module
 	if (ret < 0) {
 		printf("Failed to read the device...\n");
 		return errno;
