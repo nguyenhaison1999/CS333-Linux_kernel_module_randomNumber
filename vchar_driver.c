@@ -8,7 +8,7 @@
 
 #include <linux/random.h>
 
-#define DRIVER_AUTHOR "Nguyen Hai-Son <nguyenhaison7@gmail.com>"
+#define DRIVER_AUTHOR "Nguyen Hai-Son <nhson17@apcs.vn>"
 #define DRIVER_DESC   " character device driver"
 
 typedef struct vchar_dev {
@@ -221,4 +221,4 @@ module_exit(vchar_driver_exit);
 MODULE_LICENSE("GPL"); 
 MODULE_AUTHOR(DRIVER_AUTHOR); 
 MODULE_DESCRIPTION(DRIVER_DESC); 
-MODULE_SUPPORTED_DEVICE("testdevice"); 
+MODULE_SUPPORTED_DEVICE("dummydevice"); 
