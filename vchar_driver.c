@@ -1,23 +1,15 @@
-/*
- * ten file: vchar_driver.c
- * tac gia : nguyenhaison7@gmail.com
- * ngay tao: 27/4/2020
- * mo ta   : char driver cho thiet bi gia lap vchar_device.
- *           vchar_device la mot thiet bi nam tren RAM.
- */
-
 #include <linux/module.h> 
 #include <linux/fs.h>
 #include <linux/device.h>
 #include <linux/slab.h>
 #include <linux/cdev.h>
-#include <linux/uaccess.h>.
+#include <linux/uaccess.h>
 #include "vchar_driver.h"
 
 #include <linux/random.h>
 
 #define DRIVER_AUTHOR "Nguyen Hai-Son <nguyenhaison7@gmail.com>"
-#define DRIVER_DESC   "A sample character device driver"
+#define DRIVER_DESC   " character device driver"
 
 typedef struct vchar_dev {
 	unsigned char * control_regs;
@@ -87,12 +79,12 @@ static int vchar_driver_release(struct inode *i, struct file *f) {
 }
 
 static ssize_t vchar_driver_read(struct file *filep, char *buffer, size_t len, loff_t *offset) {
-    	printk("Handle read event, Random number is (%d)\n", randomNumber);
     	i = 0;
 	get_random_bytes(&randomNumber, sizeof(char));
+	printk("Handle read event, Random number is (%d)\n", randomNumber);
 	if (len < 4)
 	{
-		printk(KERN_INFO "\n\nRANDOMMACHINE: Failed\n");
+		printk("Failed\n");
 		return -EFAULT;
 	}
 	if (randomNumber != 0)
