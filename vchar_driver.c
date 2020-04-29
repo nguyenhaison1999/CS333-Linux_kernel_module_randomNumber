@@ -9,7 +9,7 @@
 #include <linux/random.h>
 
 #define DRIVER_AUTHOR "Nguyen Hai-Son <nhson17@apcs.vn>"
-#define DRIVER_DESC   " character device driver"
+#define DRIVER_DESC   "Character device driver that generates random number on read"
 
 typedef struct vchar_dev {
 	unsigned char * control_regs;
