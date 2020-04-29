@@ -15,11 +15,11 @@ $ sudo insmod vchar_drvier.ko
   ```
   $ cc -o user_test user_test.c
   ```
-  - Now run the file with the cmd
+  - Now run the file with the terminal
   ```
   $ sudo ./user_test
   ```
-  You should see the random number output on the screen
+  You should see the random number output on your terminal. The number also appears in kernel log, use `dmesg` to check if wanted. 
 
 6. To remove the module, use 
 ```
