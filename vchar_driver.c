@@ -7,6 +7,7 @@
 #include "vchar_driver.h"
 
 #include <linux/random.h>
+#include <asm/uaccess.h>
 
 #define DRIVER_AUTHOR "Nguyen Hai-Son <nhson17@apcs.vn>"
 #define DRIVER_DESC   "Character device driver that generates random number on read"
@@ -23,7 +24,6 @@ struct _vchar_drv {
 	struct device *dev;
 	vchar_dev_t * vchar_hw;
 	struct cdev *vcdev;
-	unsigned int open_cnt;
 } vchar_drv;
 
 /****************************** device specific - START *****************************/
@@ -63,13 +63,10 @@ void vchar_hw_exit(vchar_dev_t *hw) {
 
 /******************************** OS specific - START *******************************/
 /* cac ham entry points */
-static unsigned char randomNumber;
-static char temp[4] = {'\0'};
-static int i = 0;
+static unsigned int randomNumber; //Non-negative number
 
 static int vchar_driver_open(struct inode *i, struct file *f) {
-	vchar_drv.open_cnt++;
-	printk("Handle opened event (%d)\n", vchar_drv.open_cnt);
+	printk("Handle opened event \n");
 	return 0;
 }
 
@@ -79,32 +76,17 @@ static int vchar_driver_release(struct inode *i, struct file *f) {
 }
 
 static ssize_t vchar_driver_read(struct file *filep, char *buffer, size_t len, loff_t *offset) {
-    	i = 0;
 	get_random_bytes(&randomNumber, sizeof(char));
-	printk("Handle read event, Random number is (%d)\n", randomNumber);
+	printk("Handle read event, Random number is (%u)\n", randomNumber);
 	if (len < 4)
 	{
 		printk("Failed\n");
 		return -EFAULT;
 	}
-	if (randomNumber != 0)
-	{
-		while (randomNumber != 0)
-		{
-			temp[i] = randomNumber % 10 + '0';
-			randomNumber = randomNumber / 10;
-			i++;
-        	}
-		temp[i] = '\0';
-		buffer[i] = '\0';
-		i -= 1;
-		while (i >= 0)
-		{
-			*buffer = temp[i];
-			i -= 1;
-			buffer += 1;
-		}
-        return 0;
+	if (randomNumber != 0) {
+		//copy int value to charater buffer
+		memcpy(buffer, (char*)&randomNumber, sizeof(unsigned int));
+		return 0;
 	}
 	else
 	{
@@ -112,6 +94,7 @@ static ssize_t vchar_driver_read(struct file *filep, char *buffer, size_t len, l
 		*buffer = '\0';
 		return 0;
 	}
+
 }
 
 static struct file_operations fops = {
