@@ -23,7 +23,7 @@ $ sudo insmod vchar_drvier.ko
 
 6. To remove the module, use 
 ```
-$ sudo rmmod vchar_drvier
+$ sudo rmmod vchar_driver
 ```
 
 ## Contributing
