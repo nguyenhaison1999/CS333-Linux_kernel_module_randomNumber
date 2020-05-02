@@ -9,7 +9,7 @@ Project 1 on **CS333**, create a Linux Kernel module that generates random numbe
 ```
 $ sudo insmod vchar_drvier.ko
 ```
-4. To check the module, use `dmesg` for the kernel log or `lsmod | grep vchar_drvier` for successful loaded modules list
+4. To check the module, use `dmesg` for the kernel log or `lsmod | grep vchar_driver` for successful loaded modules list
 5. To open and read the module:
   - Compile *user_test.c* with 
   ```
